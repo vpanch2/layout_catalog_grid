@@ -1,19 +1,21 @@
 .catalog {
-  display: flex;
-  flex-wrap: wrap;
-
-  max-width: 944px;
-  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  gap: 48px;
+  grid-template-columns: $cardWidth;
+  @each $size, $amount in $media {
+    @media (min-width:#{$size}) {
+      grid-template-columns: repeat($amount, $cardWidth);
+    }
+  }
 
   &__card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 300px;
+    display: grid;
+    place-items: center;
+    width: $cardWidth;
+    height: $cardHeight;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 48px;
   }
 
   &__card:not(:nth-child(4n)) {
